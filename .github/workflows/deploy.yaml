@@ -41,3 +41,6 @@ jobs:
           existing_bucket_name: elasticbeanstalk-us-east-2-730335255488
           region: us-east-2
           deployment_package: deploy.zip
+
+      - name: Deployed!
+        run: echo App deployed to ELB
