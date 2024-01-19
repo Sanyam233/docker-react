@@ -5,7 +5,7 @@ on:
       - main
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -14,30 +14,16 @@ jobs:
       - run: docker run -e CI=true sanyam233/react-test npm test
 
       - name: Generate deployment package
-        run: zip -r deploy.zip * -x "**.git**"
-
-      - name: Get timestamp
-        uses: gerred/actions/current-time@master
-        id: current-time
-
-      - name: Run string replace
-        uses: frabert/replace-string-action@master
-        id: format-time
-        with:
-          # replaces '[:\.]+' in the timestamp with '-'
-          pattern: '[:\.]+'
-          string: "${{ steps.current-time.outputs.time }}"
-          replace-with: "-"
-          flags: "g"
+        run: zip -r deploy.zip . -x '*.git*'
 
       - name: Deploy to EB
-        uses: einaregilsson/beanstalk-deploy@v21
+        uses: einaregilsson/beanstalk-deploy@v18
         with:
-          aws_access_key: "${{ secrets.AWS_ACCESS_KEY }}"
-          aws_secret_key: "${{ secrets.AWS_SECRET_KEY }}"
-          application_name: frontend
-          environment_name: frontend-env
-          version_label: "app-${{ steps.format-time.outputs.replaced }}"
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          application_name: react-docker
+          environment_name: React-docker-env
+          version_label: ${{ github.sha }}
           existing_bucket_name: elasticbeanstalk-us-east-2-730335255488
           region: us-east-2
           deployment_package: deploy.zip
