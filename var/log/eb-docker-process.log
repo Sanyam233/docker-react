@@ -1,9 +1,0 @@
-2024/01/22 02:17:24.670480 [INFO] Loading Manifest...
-2024/01/22 02:17:24.691390 [INFO] Running command /bin/sh -c /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:730335255488:stack/awseb-e-eicqmwcpj3-stack/07d801e0-b8cc-11ee-ac46-0e0a2b54e6af -r AWSEBAutoScalingGroup --region us-east-1
-2024/01/22 02:17:25.247342 [INFO] Running command /bin/sh -c /opt/aws/bin/cfn-get-metadata -s arn:aws:cloudformation:us-east-1:730335255488:stack/awseb-e-eicqmwcpj3-stack/07d801e0-b8cc-11ee-ac46-0e0a2b54e6af -r AWSEBBeanstalkMetadata --region us-east-1
-2024/01/22 02:17:25.883177 [INFO] Checking if docker is running...
-2024/01/22 02:17:25.883205 [INFO] Fetch current app container id...
-2024/01/22 02:17:25.883239 [INFO] Running command /bin/sh -c docker ps | grep 2be1423137ef
-2024/01/22 02:17:25.910969 [INFO] 2be1423137ef   30054814c8bf   "python /tmp/applica…"   9 seconds ago   Up 8 seconds   8000/tcp   cranky_lovelace
-
-2024/01/22 02:17:25.911027 [INFO] Running command /bin/sh -c docker wait  2be1423137ef
