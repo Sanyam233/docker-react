@@ -5,10 +5,10 @@ on:
       - main
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest # the OS your job should run on
     strategy:
       matrix:
-        node-version: [17.x]
+        node-version: [16.x]
     steps:
       - name: Checkout source code
         uses: actions/checkout@v2
@@ -22,10 +22,10 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
           application_name: react-docker-demo
-          environment_name: React-docker-demo-env
+          environment_name: react-docker-demo-env
           version_label: ${{ github.sha }}
-          existing_bucket_name: elasticbeanstalk-us-east-2-730335255488
-          region: us-east-2
+          existing_bucket_name: elasticbeanstalk-us-east-1-730335255488
+          region: us-east-1
           deployment_package: deploy.zip
 
       - name: Deployed!
